@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="283" pageHeight="802" columnWidth="283" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="937783a3-45ec-48c0-bc25-e0ee46e747d2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cobrosdetalle" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    detallecobros.idcobrosfk AS detallecobros_idcobros, 
+    detallecobros.idcuentaclientesfk AS detallecobros_idcuentaclientes,
+    cuentaclientes.idcuentaclientes AS cuentaclientes_idcuentaclientes,
+    cuentaclientes.monto AS cuentaclientes_monto,  
+    cuentaclientes.cuota AS cuentaclientes_cuota,
+    cuentaclientes.nrocuota AS cuentaclientes_nrocuota, 
+    cuentaclientes.vencimiento AS cuentaclientes_vencimiento,
+    cuentaclientes.estado AS cuentaclientes_estado,  
+    cuentaclientes.idventasfk AS cuentaclientes_idventas 
+FROM
+    cuentaclientes
+INNER JOIN detallecobros ON cuentaclientes.idcuentaclientes = detallecobros.idcuentaclientesfk
+where detallecobros.idcobrosfk=$P{cobrosdetalle}]]>
+	</queryString>
+	<field name="detallecobros_idcobros" class="java.lang.Integer"/>
+	<field name="detallecobros_idcuentaclientes" class="java.lang.Integer"/>
+	<field name="cuentaclientes_idcuentaclientes" class="java.lang.Integer"/>
+	<field name="cuentaclientes_monto" class="java.lang.Integer"/>
+	<field name="cuentaclientes_cuota" class="java.lang.Integer"/>
+	<field name="cuentaclientes_nrocuota" class="java.lang.Integer"/>
+	<field name="cuentaclientes_vencimiento" class="java.lang.String"/>
+	<field name="cuentaclientes_estado" class="java.lang.String"/>
+	<field name="cuentaclientes_idventas" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="103" width="38" height="20" uuid="bba1bf71-0990-442a-9928-044e8c644b8d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="0" width="30" height="20" uuid="dc473555-de4b-4176-809c-ff5d74414789"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cuentaclientes_monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="103" width="55" height="20" uuid="a4cdcf22-5768-4ffe-a9ca-0e8b105ffcf0"/>
+				<textFieldExpression><![CDATA[$F{cuentaclientes_monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="34" height="20" uuid="ec68e0bf-d627-40c2-9322-927b20a072f3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cuentaclientes_nrocuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="43" height="20" uuid="c094dbe6-b3d2-45d5-81b0-6f26ccfc6550"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cuentaclientes_cuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="0" width="65" height="20" uuid="72bc20c5-26f9-4bbf-9ff4-f609295e93e5"/>
+				<textFieldExpression><![CDATA[$F{cuentaclientes_vencimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

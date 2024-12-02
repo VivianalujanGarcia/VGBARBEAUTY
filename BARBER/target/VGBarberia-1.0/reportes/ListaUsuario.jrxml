@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c29cabc-0acc-49a3-b820-c68ca3bded81">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM usuarios]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="datos" class="java.lang.String"/>
+	<field name="usuario" class="java.lang.String"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="rol" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement x="210" y="52" width="325" height="59" uuid="82ea70b9-5835-47f1-b1ed-ca76640d653c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE USUARIOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="23" y="15" width="302" height="111" uuid="7f216ac0-7ec1-4259-9abd-909c643334bb"/>
+				<imageExpression><![CDATA[".\\logo1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="31" uuid="986528fc-3f50-44e1-bf15-f2039d798b25"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="2" width="46" height="31" uuid="d628773f-f94b-4ead-aa50-b4070ace3e9b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="2" width="44" height="31" uuid="91a8908d-27d8-4589-9788-f93fa23223a0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="2" width="58" height="31" uuid="e3d10bee-d458-462e-bdd9-fd012caef3ca"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="2" width="33" height="31" uuid="c1b46fe6-844b-4654-89c5-940dc06c8663"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="2" width="25" height="31" uuid="a625e4ad-06bb-48bc-aecd-8e6fd42338b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ROL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="498" y="2" width="48" height="31" uuid="7703e70f-e10d-4668-bbb2-5b91dac1e8a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="27" uuid="05b7d249-ee50-4842-b48f-9b3e8f80959c"/>
+			</rectangle>
+			<textField>
+				<reportElement x="13" y="2" width="42" height="20" uuid="401e097e-d5ee-4521-9350-897bb55d42bc"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="2" width="94" height="20" uuid="f0828876-2d69-4839-9c09-f97b7e3170f7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{datos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="3" width="58" height="20" uuid="78c92901-f261-4331-8e29-2525b41ea63b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="3" width="33" height="20" uuid="e036114e-3b2f-4d67-8cf1-bf2586681f24"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="2" width="87" height="20" uuid="21b3ae76-53c3-4191-8e12-da794911aa6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="2" width="50" height="20" uuid="c17ee8a5-49f3-44d5-8711-91c638aee637"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

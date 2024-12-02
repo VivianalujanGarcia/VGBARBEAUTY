@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ff900b2-dc1f-4486-9a98-7d3dc66381c4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_marca" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select* from marcas where id_marca=$P{id_marca}]]>
+	</queryString>
+	<field name="id_marca" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="144" splitType="Stretch">
+			<staticText>
+				<reportElement x="217" y="62" width="325" height="59" uuid="43dde3d5-f345-442b-a76f-ff84360275c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE MARCAS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="30" y="10" width="187" height="126" uuid="c8f42e2a-9b29-494a-a9b3-e53ffd5c71d1"/>
+				<imageExpression><![CDATA["\\logo1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="159" splitType="Stretch">
+			<rectangle>
+				<reportElement x="139" y="30" width="342" height="79" uuid="f831bda1-4ea4-4f19-b2cd-ecf4a9f0cb48"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="161" y="69" width="78" height="40" uuid="dce4bfef-647b-4448-b2b8-3e730d858cf6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="244" y="30" width="1" height="79" uuid="5cc092e0-a60f-4b03-b5b5-04959988f48e"/>
+			</line>
+			<line>
+				<reportElement x="139" y="69" width="342" height="1" uuid="27dd4f6e-fa01-42b3-809d-d75978219797"/>
+			</line>
+			<staticText>
+				<reportElement x="165" y="30" width="46" height="39" uuid="7f1f4ef9-36f9-4aae-bf66-c2e9fe2f5e35"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="41" width="100" height="20" uuid="767f3e25-3076-495c-9d35-550f21c20f48"/>
+				<textFieldExpression><![CDATA[$F{id_marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="80" width="100" height="20" uuid="7048bdae-e2d5-4776-a83a-9303e12b32fd"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

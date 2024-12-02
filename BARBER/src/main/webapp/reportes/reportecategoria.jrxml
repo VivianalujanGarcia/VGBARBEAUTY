@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2e4cdc6-56e2-4837-b205-a4942345e697">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_categoria" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM categorias where id_categoria=$P{id_categoria}]]>
+	</queryString>
+	<field name="id_categoria" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="179" height="129" uuid="2455c5bf-8f61-4946-ad73-cb895020575e"/>
+				<imageExpression><![CDATA[".\\logo1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="179" y="70" width="325" height="59" uuid="70d7b84e-7e99-489f-9a80-2a2fe2af1477"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CATEGORIAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="150" splitType="Stretch">
+			<rectangle>
+				<reportElement x="130" y="10" width="342" height="27" uuid="b008e978-855f-48be-9fae-cd6ab7971439"/>
+			</rectangle>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

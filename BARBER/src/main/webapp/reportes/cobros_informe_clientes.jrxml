@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe_Cobros" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0b30bd9c-a4b7-40ce-923e-48e6ebc40b05">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    to_char(c.fecha, 'DD-MM-YYYY') AS fecha_formateada, 
+    cli.nombre AS cliente, 
+    cc.monto AS monto_cuenta, 
+    c.numero AS numero_cobro,
+
+    -- Sumar el monto total de las cuentas del cliente
+    SUM(cc.monto) OVER (PARTITION BY c.idclientes) AS suma_total_cuentas_cliente, 
+
+    -- Fechas fijas como texto en formato 'DD-MM-YYYY'
+    to_char($P{fecha_desde}::date, 'DD-MM-YYYY') AS fecha_desde, 
+    to_char($P{fecha_hasta}::date, 'DD-MM-YYYY') AS fecha_hasta
+
+FROM 
+    cobros c
+JOIN 
+    clientes cli ON c.idclientes = cli.id_cliente
+JOIN 
+    cuentasclientes cc ON cc.idventas = c.id  -- Relacionamos cuentasclientes con cobros
+WHERE 
+    c.estado = 'FINALIZADO' 
+    AND c.fecha BETWEEN $P{fecha_desde}::date AND $P{fecha_hasta}::date  -- Fechas dinámicas
+    AND c.idclientes = $P{id_cliente}  -- Parámetro dinámico para el cliente
+GROUP BY 
+    cli.nombre, cli.ci, c.numero, c.fecha, cc.monto, c.idclientes  -- Ahora incluimos c.idclientes
+ORDER BY 
+    c.fecha;
+]]>
+	</queryString>
+	<field name="fecha_formateada" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="monto_cuenta" class="java.lang.Integer"/>
+	<field name="numero_cobro" class="java.lang.Integer"/>
+	<field name="suma_total_cuentas_cliente" class="java.lang.Long"/>
+	<field name="fecha_desde" class="java.lang.String"/>
+	<field name="fecha_hasta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="75" width="100" height="20" uuid="45909706-3b2f-4430-a291-09c61c607579"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="75" width="100" height="20" uuid="79d70131-803e-4a7b-9e0a-56d9a46f7f29"/>
+				<textFieldExpression><![CDATA[$F{fecha_desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="75" width="100" height="20" uuid="51c9804f-c246-46e6-8d59-0a3dfa5e9616"/>
+				<textFieldExpression><![CDATA[$F{fecha_hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="217" y="75" width="100" height="20" uuid="3ab6d844-c339-4930-9d42-e9a435969c81"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="10" width="555" height="65" uuid="aa6679d6-dd5a-40ea-91d9-538105da6033"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME  DE COBROS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-1" y="4" width="555" height="32" uuid="23355825-948e-4861-9a43-9fa3fdc68408"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="129" y="6" width="60" height="20" uuid="80c5ce3c-be95-416a-b350-3ee54800dc00"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="6" width="52" height="20" uuid="36b2386c-b868-43f7-8feb-4e5d8bb6579b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="6" width="31" height="20" uuid="1d58ee51-ef4c-4689-9a9b-9a1e5dd6c1d2"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="6" width="100" height="20" uuid="39934e87-835a-4081-8e7e-fe996c68d3ed"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="32" uuid="b6c8f67c-f3f5-49a4-b7dc-a565aed67362"/>
+			</rectangle>
+			<textField>
+				<reportElement x="260" y="1" width="130" height="32" uuid="248d7b77-e775-4474-94e2-24acda477cee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="1" width="100" height="32" uuid="bdf5e65f-1507-4bc9-b400-b31a8f9b7659"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_formateada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="1" width="34" height="32" uuid="4919807f-1f70-4604-9ea1-e8affbb4086b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numero_cobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="1" width="70" height="32" uuid="56463c94-5948-43f7-b34d-b49c4b4bcb65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{monto_cuenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50" splitType="Stretch">
+			<rectangle>
+				<reportElement x="439" y="0" width="115" height="30" uuid="293f9667-3d93-4a41-9253-c19605eda9c8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="439" y="0" width="115" height="30" uuid="1496684b-a35e-4cf3-a24c-cdbfb4a65d6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suma_total_cuentas_cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

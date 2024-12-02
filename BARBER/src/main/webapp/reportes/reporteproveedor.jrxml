@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a3685ac-7087-46db-92a1-08eb2b79f676">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_proveedor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT p.id_proveedor, p.nombre, p.ruc, p.telefono, p.correo, ci.nombre AS nombre_ciudad FROM proveedores p INNER JOIN ciudades ci ON p.id_ciudad = ci.id_ciudad where id_proveedor=$P{id_proveedor}]]>
+	</queryString>
+	<field name="id_proveedor" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="ruc" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="147" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="196" height="147" uuid="8ac650e8-97d0-43f7-9f78-b13f5dfb62fd"/>
+				<imageExpression><![CDATA[".\\logo1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="196" y="45" width="344" height="76" uuid="514d77f2-3f44-4d65-b989-52494ceef0d9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PROVEEDORES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="293" splitType="Stretch">
+			<line>
+				<reportElement x="89" y="148" width="383" height="1" uuid="8a7b0660-7e6c-42f7-bc18-4cf5c73a8f5a"/>
+			</line>
+			<line>
+				<reportElement x="91" y="77" width="380" height="1" uuid="a9dace7d-316b-4707-9e85-b43698ea9b2b"/>
+			</line>
+			<textField>
+				<reportElement x="210" y="126" width="100" height="20" uuid="0917e839-58c4-4847-b6fd-9bea29e53153"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="471" y="11" width="1" height="201" uuid="fa18e466-873c-4bdb-8b1f-e67d5db9eac7"/>
+			</line>
+			<staticText>
+				<reportElement x="96" y="78" width="58" height="36" uuid="73ba60e4-2a63-41a4-8cd2-67326f860234"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<line>
+				<reportElement x="89" y="212" width="382" height="1" uuid="a42c0f3f-b856-4833-acfd-197521f7a572"/>
+			</line>
+			<textField>
+				<reportElement x="214" y="188" width="100" height="20" uuid="ed879e6a-9604-4b52-acdf-b51b020e60cd"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="91" y="114" width="85" height="32" uuid="301649cf-dc2f-4fa0-8847-1f4709de0fc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="91" y="114" width="380" height="1" uuid="6701d015-5c1f-4078-b806-4865e2c30e12"/>
+			</line>
+			<staticText>
+				<reportElement x="100" y="45" width="54" height="32" uuid="1ed37e46-7eb9-4aa8-b571-5a98cef3bf3e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="88" y="10" width="1" height="202" uuid="67c8d524-0ad9-4967-a2c8-c26c2bce884e"/>
+			</line>
+			<line>
+				<reportElement x="187" y="11" width="1" height="201" uuid="7706e683-1949-4282-9bd0-969676a18c8b"/>
+			</line>
+			<staticText>
+				<reportElement x="99" y="11" width="35" height="33" uuid="aa814163-5e1d-41e4-a795-40fefeaa4392"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="91" y="179" width="380" height="1" uuid="178d3da3-a35a-40c4-b7f6-e2df53737180"/>
+			</line>
+			<staticText>
+				<reportElement x="103" y="180" width="43" height="32" uuid="c31b35a2-f98c-4611-ba59-5702b8d9fc5f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CIUDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="149" width="85" height="32" uuid="19b8df85-5728-48b1-a0db-36177f498bf1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ CORREO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="91" y="44" width="380" height="1" uuid="76ab1150-93ea-44f8-926a-6c9077b809dc"/>
+			</line>
+			<line>
+				<reportElement x="91" y="9" width="380" height="1" uuid="1bf2b201-87c8-4560-a503-ebcd15d3beb8"/>
+			</line>
+			<textField>
+				<reportElement x="210" y="24" width="100" height="20" uuid="2731c533-725c-442a-bbf9-c35501324178"/>
+				<textFieldExpression><![CDATA[$F{id_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="56" width="100" height="20" uuid="3d8fdc54-f892-47ce-a564-fde93af36794"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="94" width="100" height="20" uuid="8bd67f0a-4cda-4a66-95ed-c48056b36176"/>
+				<textFieldExpression><![CDATA[$F{ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="159" width="100" height="20" uuid="793144d6-9f99-43ef-a3c8-d82b9fddeccd"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

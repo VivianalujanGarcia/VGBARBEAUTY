@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa3e5ee5-2ada-4413-a05a-bd9816bb2693">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="detallecompra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    dv.id,
+    dv.cantidad,
+    dv.precio,
+    p.iva,
+    p.nombre AS producto,
+    c.id AS id_compra,
+    CASE 
+        WHEN p.iva = 0 THEN dv.precio * dv.cantidad
+        ELSE 0  
+    END AS exenta,
+    CASE 
+        WHEN p.iva = 5 THEN dv.precio * dv.cantidad
+        ELSE 0  
+    END AS cinco,
+    CASE 
+        WHEN p.iva = 10 THEN dv.precio * dv.cantidad
+        ELSE 0  
+    END AS diez
+FROM 
+    detallecompras dv
+INNER JOIN 
+    productos p ON dv.id_producto = p.id_producto
+INNER JOIN 
+    compras c ON dv.idcompra = c.id
+WHERE 
+    dv.idcompra = $P{detallecompra}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="precio" class="java.lang.Integer"/>
+	<field name="iva" class="java.lang.Integer"/>
+	<field name="producto" class="java.lang.String"/>
+	<field name="id_compra" class="java.lang.Integer"/>
+	<field name="exenta" class="java.lang.Integer"/>
+	<field name="cinco" class="java.lang.Integer"/>
+	<field name="diez" class="java.lang.Integer"/>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="2" width="55" height="20" uuid="13f6fe53-4f66-463e-8376-969710785138"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{cinco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="2" width="60" height="17" uuid="ea52564b-281c-45ea-91d5-b218745634b3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="2" width="63" height="20" uuid="021510a6-6f7d-4566-b22f-bba8769c8e35"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{exenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="2" width="146" height="17" uuid="e4b28760-027d-4319-adec-ac817ecc03d0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="2" width="61" height="17" uuid="c18ca9d1-9243-4628-a7b5-b9f346dfcd37"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="2" width="50" height="20" uuid="5be43ecd-fbc0-4c32-8343-ae6d3c65c8a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{diez}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

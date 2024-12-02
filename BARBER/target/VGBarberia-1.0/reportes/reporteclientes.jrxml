@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="60413a12-0098-4e9f-8e71-1075304dd4b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT c.id_cliente, c.nombre, c.ci, c.direccion, c.telefono, ci.nombre AS nombre_ciudad FROM clientes c INNER JOIN ciudades ci ON c.id_ciudad = ci.id_ciudad WHERE id_cliente=$P{id_cliente}]]>
+	</queryString>
+	<field name="id_cliente" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="ci" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="10" width="179" height="129" uuid="2ca98f53-dfec-4491-a4e3-e15bb20619af"/>
+				<imageExpression><![CDATA[".\\logo1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="189" y="80" width="325" height="59" uuid="d4196288-0fe9-4cb3-b841-4d5d218e524f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CLIENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="272" splitType="Stretch">
+			<line>
+				<reportElement x="87" y="147" width="380" height="1" uuid="bfaaf5d3-522e-4ad0-aae4-66aa47f0ee17"/>
+			</line>
+			<line>
+				<reportElement x="467" y="11" width="1" height="201" uuid="635e5f79-f2e9-4b2a-bda3-aaa5b1164e2b"/>
+			</line>
+			<line>
+				<reportElement x="87" y="179" width="380" height="1" uuid="1dea5bbe-2258-4fbc-9d99-d9e62c02e731"/>
+			</line>
+			<line>
+				<reportElement x="84" y="9" width="383" height="1" uuid="5e9b0fe8-0a1c-4b04-b5d5-20d216d28f81"/>
+			</line>
+			<line>
+				<reportElement x="84" y="10" width="1" height="202" uuid="25521013-0b2a-4fa4-94e1-4228ed174af5"/>
+			</line>
+			<staticText>
+				<reportElement x="95" y="11" width="35" height="33" uuid="6b45a52c-5be4-4aaf-ac7f-05899de6874f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="180" width="43" height="32" uuid="936f082a-b0a5-4b02-9e8c-1e8bde6e9123"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CIUDAD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="87" y="44" width="380" height="1" uuid="96f9f710-0948-47d8-8976-0e8d3e343348"/>
+			</line>
+			<line>
+				<reportElement x="85" y="212" width="382" height="1" uuid="0182ff52-30b5-4d00-bfd9-e134f2179bdc"/>
+			</line>
+			<staticText>
+				<reportElement x="96" y="45" width="54" height="32" uuid="b9e86a5a-6ddc-43e2-bbd5-7971e17de33e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="183" y="11" width="1" height="201" uuid="d80d3593-f8d7-4350-8aa7-9e2bd56737a8"/>
+			</line>
+			<staticText>
+				<reportElement x="84" y="147" width="85" height="32" uuid="d8316821-5f70-4b96-89d2-4a61381b0f94"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="87" y="77" width="380" height="1" uuid="4452c059-14bc-46d9-bec6-7cf3eb847a40"/>
+			</line>
+			<staticText>
+				<reportElement x="92" y="78" width="26" height="36" uuid="ac0095db-2497-41c7-bfa0-07e88d389310"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="87" y="114" width="380" height="1" uuid="a3b04c12-f689-4c15-8c47-bd60cabd8158"/>
+			</line>
+			<staticText>
+				<reportElement x="84" y="115" width="85" height="32" uuid="36a482fe-272e-4a5b-8f3c-aeee3efbe235"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="201" y="24" width="100" height="20" uuid="e59b05a3-38c7-4ffe-a49b-86d44212ea86"/>
+				<textFieldExpression><![CDATA[$F{id_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="57" width="100" height="20" uuid="90d0debb-4021-49e2-8dde-80cf60c36994"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="94" width="100" height="20" uuid="c5d7580f-5927-48aa-881e-0efdbe4c161b"/>
+				<textFieldExpression><![CDATA[$F{ci}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="127" width="100" height="20" uuid="49c5a72d-d89c-4424-a31f-1aa881c2eff0"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="159" width="100" height="20" uuid="1de9bed0-9250-4221-8e8f-52a23d91a4f5"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="192" width="100" height="20" uuid="423824f0-9f82-40a9-8818-a1369ca16969"/>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

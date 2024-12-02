@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="146602c6-4d8a-4708-a65d-b800529d8550">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_proveedor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    c.numero, 
+    to_char(v.fecha, 'dd-mm-yyyy') AS fecha_formateada, 
+    p.descripcion AS producto, 
+    dt.cantidad, 
+    cc.monto,
+    
+    -- Suma total de todos los montos de cobros en el rango de fechas
+    SUM(cc.monto) OVER () AS suma_total_pagos,  
+    
+    -- Incluir las fechas 'Desde' y 'Hasta' como parámetros dinámicos
+    to_char($P{fecha_desde}::date, 'DD-MM-YYYY') AS fecha_desde, 
+    to_char($P{fecha_hasta}::date, 'DD-MM-YYYY') AS fecha_hasta
+
+FROM 
+    detallecompras dt
+JOIN 
+    productos p ON dt.id_producto = p.id_producto
+JOIN 
+    compras v ON dt.idcompra = v.id
+JOIN 
+    cuentasproveedores cc ON v.id = cc.idcompras  -- Relacionamos ventas con cuentasclientes
+JOIN 
+    pagos c ON c.idproveedores = v.id_proveedor  -- Relacionamos cobros con clientes
+WHERE 
+    v.estado = 'Finalizado' 
+    AND v.fecha BETWEEN $P{fecha_desde}::date AND $P{fecha_hasta}::date  -- Fechas proporcionadas como parámetros
+    AND v.id_proveedor =  $P{id_proveedor} -- Filtramos por producto específico
+ORDER BY 
+    v.fecha;]]>
+	</queryString>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="fecha_formateada" class="java.lang.String"/>
+	<field name="producto" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="monto" class="java.lang.Integer"/>
+	<field name="suma_total_pagos" class="java.lang.Long"/>
+	<field name="fecha_desde" class="java.lang.String"/>
+	<field name="fecha_hasta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="11" width="555" height="65" uuid="2a53ced2-9822-44c0-8db5-ec1415c5f2a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME  DETALLE PAGOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="76" width="100" height="20" uuid="0ef92eea-7ad1-42d4-9df3-ad69df098758"/>
+				<textFieldExpression><![CDATA[$F{fecha_hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="235" y="76" width="100" height="20" uuid="5271e821-b3b5-4f26-b32b-e945314db50b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="76" width="100" height="20" uuid="3efca68a-dd41-4d36-9753-75a787fa615f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="76" width="100" height="20" uuid="06a85a23-55d7-4716-af66-cebaaca908dd"/>
+				<textFieldExpression><![CDATA[$F{fecha_desde}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="2" width="555" height="32" uuid="8f62a8f3-7013-48f2-aace-641de095e387"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="93" y="2" width="60" height="32" uuid="3e8a8c4a-4f65-4711-b992-73923a58f410"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="2" width="31" height="32" uuid="9e9d9170-a1d3-4701-a7e1-773f573f743a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="2" width="100" height="32" uuid="962cd765-2cb4-46bb-8da4-ee308f840a98"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="2" width="100" height="32" uuid="75d87094-a168-4458-9485-58f757d071ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="2" width="52" height="32" uuid="51ccb68f-aad9-490b-b1ec-6a38ad8b8b23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="-1" width="555" height="32" uuid="d593c70d-c1a4-4a8b-8edd-205159f7bc0e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="16" y="-1" width="30" height="33" uuid="33024c50-a256-4057-a382-46bf7735faf3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="-1" width="100" height="32" uuid="0d9871b4-8389-4ec5-b64f-ab510b5675fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="-1" width="131" height="33" uuid="5221e659-6000-46cf-ad66-aad1ab6ad0ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="-1" width="100" height="32" uuid="38853c50-3240-42ce-9910-1f6dbd973414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_formateada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="-1" width="100" height="33" uuid="cb08f055-c8d0-4d66-8bbd-5e56a5e3ac59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="347" y="3" width="100" height="20" uuid="6da58ae4-7921-41a3-849e-d9034e222647"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL CON IVA  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="457" y="3" width="100" height="20" uuid="ea4a1e49-6e45-4d07-a99d-a766f8a7dbf1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suma_total_pagos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

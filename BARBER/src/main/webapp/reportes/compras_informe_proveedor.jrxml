@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="993ce6d8-ab8a-4e1b-9879-a5d78aed2374">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_proveedor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    to_char(c.fecha, 'DD-MM-YYYY') AS fecha_formateada, 
+    p.nombre AS proveedor, 
+    c.total AS monto_compra, 
+    c.numero,
+    -- Sumar el total de las compras realizadas en el rango de fechas
+    SUM(c.total) OVER () AS suma_total_compras,  -- Suma total de todas las compras en el rango de fechas
+    
+    -- Incluir las fechas 'Desde' y 'Hasta' como parámetros dinámicos
+    to_char($P{fecha_desde}::date, 'DD-MM-YYYY') AS fecha_desde, 
+    to_char($P{fecha_hasta}::date, 'DD-MM-YYYY') AS fecha_hasta
+    
+FROM 
+    compras c 
+JOIN 
+    proveedores p ON c.id_proveedor = p.id_proveedor 
+WHERE 
+    c.estado = 'Finalizado' 
+    AND c.fecha BETWEEN $P{fecha_desde}::date AND  $P{fecha_hasta}::date 
+    AND c.id_proveedor = $P{id_proveedor}
+ORDER BY c.fecha;
+]]>
+	</queryString>
+	<field name="fecha_formateada" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="monto_compra" class="java.lang.Integer"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="suma_total_compras" class="java.lang.Long"/>
+	<field name="fecha_desde" class="java.lang.String"/>
+	<field name="fecha_hasta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="65" uuid="04fd26a1-77b1-4523-b254-7ec61010ea62"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME  DE COMPRAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="75" width="100" height="20" uuid="f99f6dce-bf24-4a09-ae47-9975b9819a8d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="316" y="75" width="100" height="20" uuid="9efb626e-1b49-4bfb-a80c-3f1d1115ef9a"/>
+				<textFieldExpression><![CDATA[$F{fecha_hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="75" width="100" height="20" uuid="9cb24bbc-c92a-407c-87de-ed730904c65b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="109" y="75" width="100" height="20" uuid="753863a3-16bb-48fa-8ac3-10e5e0763933"/>
+				<textFieldExpression><![CDATA[$F{fecha_desde}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="10" width="555" height="32" uuid="7dd17c45-5d0f-4977-b7de-5617389a58d8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="140" y="12" width="60" height="20" uuid="d821983c-bd7b-4f20-bb51-859ee1b73f24"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="12" width="52" height="20" uuid="6af73cfa-6890-4444-bfbe-e2af27e81824"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="12" width="100" height="20" uuid="3b87fe07-e67e-48a2-8a61-0290f41dcd9a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="12" width="31" height="20" uuid="16f7394d-b07a-4297-99fb-05695ac9b18d"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="32" uuid="40e398b4-b3c3-4f8e-86c7-e75e1e3c3af8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="118" y="2" width="100" height="32" uuid="e873fae0-6be8-4024-bc7a-4e650b4c5116"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_formateada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="2" width="115" height="32" uuid="17d0d11b-39a2-4881-a589-a9e5e9e3ab92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{monto_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="2" width="50" height="32" uuid="7da0af92-af87-49d0-bb89-180599522b18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="2" width="100" height="32" uuid="2f080b1c-778d-4750-bc49-4344c81fa4a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="428" y="0" width="127" height="20" uuid="de444ae2-4d4d-4424-aaed-607b094cbfff"/>
+			</rectangle>
+			<textField>
+				<reportElement x="428" y="0" width="127" height="20" uuid="e148db05-5480-49ef-9430-ea23260bbf6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suma_total_compras}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

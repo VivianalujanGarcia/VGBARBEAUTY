@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a826f8b7-a722-4f1b-b914-da925cad25bd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    to_char(c.fecha, 'DD-MM-YYYY') AS fecha_formateada, 
+    p.nombre AS proveedor, 
+    p.ruc, 
+    c.total, 
+    c.id,
+    -- Sumar el total de las compras finalizadas en el rango de fechas
+    SUM(c.total) OVER () AS suma_total_compras,  -- Suma total de todas las compras en el rango de fechas
+    
+    -- Incluir las fechas 'Desde' y 'Hasta' como parámetros dinámicos
+    to_char($P{fecha_desde}::date, 'DD-MM-YYYY') AS fecha_desde, 
+    to_char($P{fecha_hasta}::date, 'DD-MM-YYYY') AS fecha_hasta
+    
+FROM 
+    compras c 
+JOIN 
+    proveedores p ON c.id_proveedor = p.id_proveedor 
+WHERE 
+    c.estado = 'Cancelado' 
+    AND c.fecha BETWEEN $P{fecha_desde}::date AND $P{fecha_hasta}::date
+ORDER BY c.fecha;
+]]>
+	</queryString>
+	<field name="fecha_formateada" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="ruc" class="java.lang.String"/>
+	<field name="total" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="suma_total_compras" class="java.lang.Long"/>
+	<field name="fecha_desde" class="java.lang.String"/>
+	<field name="fecha_hasta" class="java.lang.String"/>
+	<title>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="12" width="555" height="65" uuid="88f489fe-b804-4332-8a7f-5f13365c05ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME GENERAL DE COMPRAS CANCELADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="83" width="100" height="20" uuid="b551fd9a-1c67-4b57-9021-b755dfbb2c8b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA INICIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="83" width="100" height="20" uuid="2f233554-a081-4d76-a44e-2af318bf0791"/>
+				<textFieldExpression><![CDATA[$F{fecha_desde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="226" y="83" width="100" height="20" uuid="8fc34a4e-4bd3-40a4-a188-e8d55a5e1204"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA FIN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="326" y="83" width="100" height="20" uuid="23977c0f-29d0-4def-b939-8aa336821c6f"/>
+				<textFieldExpression><![CDATA[$F{fecha_hasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="3" width="555" height="32" uuid="35aaad4c-b321-44ab-980c-d3c6b71c32fa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="236" y="5" width="100" height="20" uuid="27c02c4e-478b-4225-90a4-f53ceffa3cc5"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="5" width="31" height="20" uuid="b31ce011-beb9-40bb-b666-b6ca129b6cd1"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="5" width="29" height="20" uuid="99c1fde9-07ad-4203-9b44-a28768742b44"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="5" width="60" height="20" uuid="818f7981-717b-49d4-beaa-72461f5d4f74"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="5" width="52" height="20" uuid="55da2c68-e5b5-4087-83dd-66d870fd534f"/>
+				<textElement>
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="2" width="555" height="32" uuid="779e296b-3039-4131-8389-bd50b8813a5e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="115" y="8" width="60" height="20" uuid="cb1383ee-edb6-417d-a30e-89ccd7e1459a"/>
+				<textFieldExpression><![CDATA[$F{fecha_formateada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="8" width="31" height="20" uuid="bbe0b6f7-37bc-4426-aac9-306ac7d08324"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="8" width="52" height="20" uuid="aad96f5d-c32e-4a1a-9145-277dd14fb8c4"/>
+				<textFieldExpression><![CDATA[$F{ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="8" width="87" height="20" uuid="109fb633-e8e0-4529-a814-be8d85e568f9"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="8" width="100" height="20" uuid="c1285bd3-a898-442e-841d-a9a8ba74f7d2"/>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<rectangle>
+				<reportElement x="445" y="2" width="111" height="20" uuid="b3fb58fc-57c0-4dc3-a613-74ffb1146d23"/>
+			</rectangle>
+			<textField>
+				<reportElement x="445" y="2" width="110" height="20" uuid="aa74856e-f2ba-4bdc-9539-0f9dede79b9b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suma_total_compras}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
