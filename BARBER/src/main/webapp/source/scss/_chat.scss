@@ -1,25 +1,3 @@
-/*===== CHAT =====*/
-.chat-left-sidebar {
-  margin-bottom: 0;
-  border-bottom-color: transparent;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  @include media-breakpoint-up(lg) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-color: $border-color;
-    border-right: 0;
-    margin-bottom: 2rem;
-  }
-}
-
-.chat-right-sidebar {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  @include media-breakpoint-up(lg) {
-    border-top-right-radius: $border-radius;
-    border-bottom-left-radius: 0;
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d890d499128f72e49740b2e3a4dcc81865185b84ed9ea6f88dcea0e1530b3b8b
+size 653

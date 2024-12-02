@@ -1,17 +1,3 @@
-<%@ include file="../jsp/conexion.jsp" %>
-out.printl("<option value="">Seleccione una Marca:</option>");
-<%
-try {
-    Statement st = conn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT * FROM marcas ORDER BY id_marca ;");
-    while (rs.next()) {
-%>
-        <option value="<%= rs.getString(1) %>"><%= rs.getString(1) %> - <%= rs.getString(2) %></option>
-<%
-    }
-    rs.close();
-    st.close();
-} catch (Exception e) {
-    out.println("Error PSQL: " + e);
-}
-%>
+version https://git-lfs.github.com/spec/v1
+oid sha256:b7a61c5b2eee4d61f1905eca2755c477ec13c43c325d9a9bd7d81817cdd1d17b
+size 475

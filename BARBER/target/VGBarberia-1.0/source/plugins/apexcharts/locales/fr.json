@@ -1,20 +1,3 @@
-{
-  "name": "fr",
-  "options": {
-    "months": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "shortMonths": ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juill.", "août", "sept.", "oct.", "nov.", "déc."],
-    "days": ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
-    "shortDays": ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
-    "toolbar": {
-      "exportToSVG": "Télécharger au format SVG",
-      "exportToPNG": "Télécharger au format PNG",
-      "menu": "Menu",
-      "selection": "Sélection",
-      "selectionZoom": "Sélection et zoom",
-      "zoomIn": "Zoomer",
-      "zoomOut": "Dézoomer",
-      "pan": "Navigation",
-      "reset": "Réinitialiser le zoom"
-    }
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:17c56e420b0912a94d6b98680d6653ceda9d7f064516bc5d6ffbd1d5403eb8d0
+size 814

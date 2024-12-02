@@ -1,6 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-ne" width="512" height="512">
-  <path fill="#0db02b" d="M0 0h512v512H0z"/>
-  <path fill="#fff" d="M0 0h512v341.3H0z"/>
-  <path fill="#e05206" d="M0 0h512v170.7H0z"/>
-  <circle cx="256" cy="256" r="72.5" fill="#e05206"/>
-</svg>
+version https://git-lfs.github.com/spec/v1
+oid sha256:9c5f798ccd7d3dd3771ae628b4a39dfb2a4578fefd2e006f3ce89c3e494d0cb1
+size 285

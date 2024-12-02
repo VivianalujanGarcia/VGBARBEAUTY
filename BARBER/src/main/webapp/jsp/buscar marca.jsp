@@ -1,17 +1,3 @@
-<%-- 
-    Document   : buscar marca
-    Created on : 6 ago. 2024, 14:41:39
-    Author     : Usuario
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+version https://git-lfs.github.com/spec/v1
+oid sha256:5d32199abce1bc1c76aea4df6cb523408da1036dc16c152267e8255e08a01f90
+size 376

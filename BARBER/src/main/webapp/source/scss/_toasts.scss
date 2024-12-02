@@ -1,36 +1,3 @@
-/*===== TOASTS =====*/
-.toast {
-  box-shadow: none !important;
-  opacity: 1 !important;
-  &.toast-info {
-    background-color: $info;
-  }
-  &.toast-success {
-    background-color: $success;
-  }
-  &.toast-warning {
-    background-color: $warning;
-  }
-  &.toast-error {
-    background-color: $danger;
-  }
-  &:hover {
-    box-shadow: none !important;
-  }
-}
-
-#toast-container{
-  margin-top: 65px;
-  right:0;
-  z-index: 999;
-  .toast-success {
-    background-color: $primary;
-    opacity: 1;
-  }
-}
-#toast-container>div{
-  box-shadow: none;
-}
-#toast-container>div:hover{
-  box-shadow: none;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:64e3fa231802e4406fc5f90e654d19aa370fddb806736ece68e8cf9d4176d0f1
+size 587

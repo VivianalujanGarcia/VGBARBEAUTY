@@ -1,31 +1,3 @@
-$(document).ready(function () {
-    $("#buscar").on('click', function (e) {
-        e.preventDefault();
-        var fecha_desde = $("#fecha_desde").val();
-        var fecha_hasta = $("#fecha_hasta").val();
-
-        $.ajax({
-            data: {
-                listar: 'listarventa', 
-                fecha_desde: fecha_desde, 
-                fecha_hasta: fecha_hasta
-            },
-            url: 'jsp/informe_venta_anulado.jsp',
-            type: 'post',
-            success: function (response) {
-                $("#resultados").html(response);
-                $("#Imprimirl").modal("show");
-            },
-            error: function (xhr, status, error) {
-                console.error("Error en la solicitud AJAX:", status, error);
-                $("#mensajeAlerta").html("Error al procesar la solicitud.");
-            }
-        });
-    });
-
-    $("#imprimi").on('click', function () {
-        var fecha_desde = $("#fecha_desde").val();
-        var fecha_hasta = $("#fecha_hasta").val();
-        window.open('jsp/informe_ventas_anulado.jsp?fecha_desde=' + encodeURIComponent(fecha_desde) + '&fecha_hasta=' + encodeURIComponent(fecha_hasta), '_blank');
-    });
-});
+version https://git-lfs.github.com/spec/v1
+oid sha256:301884692ff136c73d97b6e7bd362a7ebff6c3693f6842c0cdc1a7ffd8b15f3e
+size 1175

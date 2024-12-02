@@ -1,3 +1,3 @@
-/*! Select2 4.0.6-rc.1 | https://github.com/select2/select2/blob/master/LICENSE.md */
-
-(function(){if(jQuery&&jQuery.fn&&jQuery.fn.select2&&jQuery.fn.select2.amd)var e=jQuery.fn.select2.amd;return e.define("select2/i18n/sv",[],function(){return{errorLoading:function(){return"Resultat kunde inte laddas."},inputTooLong:function(e){var t=e.input.length-e.maximum,n="Vänligen sudda ut "+t+" tecken";return n},inputTooShort:function(e){var t=e.minimum-e.input.length,n="Vänligen skriv in "+t+" eller fler tecken";return n},loadingMore:function(){return"Laddar fler resultat…"},maximumSelected:function(e){var t="Du kan max välja "+e.maximum+" element";return t},noResults:function(){return"Inga träffar"},searching:function(){return"Söker…"}}}),{define:e.define,require:e.require}})();
+version https://git-lfs.github.com/spec/v1
+oid sha256:75904b31146e297577d7ac53d9fb8c8a730b9a9701e78c0350a4a61c75955f38
+size 791

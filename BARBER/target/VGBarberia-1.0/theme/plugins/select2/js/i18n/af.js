@@ -1,3 +1,3 @@
-/*! Select2 4.0.6-rc.1 | https://github.com/select2/select2/blob/master/LICENSE.md */
-
-(function(){if(jQuery&&jQuery.fn&&jQuery.fn.select2&&jQuery.fn.select2.amd)var e=jQuery.fn.select2.amd;return e.define("select2/i18n/af",[],function(){return{errorLoading:function(){return"Die resultate kon nie gelaai word nie."},inputTooLong:function(e){var t=e.input.length-e.maximum,n="Verwyders asseblief "+t+" character";return t!=1&&(n+="s"),n},inputTooShort:function(e){var t=e.minimum-e.input.length,n="Voer asseblief "+t+" of meer karakters";return n},loadingMore:function(){return"Meer resultate word gelaai…"},maximumSelected:function(e){var t="Kies asseblief net "+e.maximum+" item";return e.maximum!=1&&(t+="s"),t},noResults:function(){return"Geen resultate gevind"},searching:function(){return"Besig…"}}}),{define:e.define,require:e.require}})();
+version https://git-lfs.github.com/spec/v1
+oid sha256:1359d4949989d2252913bfc520f06e6c31c9d700bf63a1e7e69d9363aa509dda
+size 851

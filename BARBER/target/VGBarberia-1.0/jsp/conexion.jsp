@@ -1,12 +1,3 @@
-
-<%@page import="java.sql.*"%>
-<%@page import="java.util.*"%>
-<%
-        Connection conn = null;
-        Class.forName("org.postgresql.Driver");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/VGBarberia","postgres","1");
-        if (conn != null) {
-            //out.print("conectado");
-        }
-%>
- 
+version https://git-lfs.github.com/spec/v1
+oid sha256:207a5d7ba6f038bd9c3c14eebc4299e2b7a7f0134a945e1328cc3e379f377836
+size 332

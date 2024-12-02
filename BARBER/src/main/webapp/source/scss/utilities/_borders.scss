@@ -1,18 +1,3 @@
-/* Border Right md */
-.border-right-md {
-  @include media-breakpoint-up(md){
-    border-right: 1px solid $border-color !important;
-  }
-}
-
-/* Border Right lg */
-.border-right-lg {
-  @include media-breakpoint-up(lg){
-    border-right: 1px solid $border-color !important;
-  }
-}
-
-/* Flex-basis */
-.flex-basis-100 {
-   flex-basis: 100%;
- }
+version https://git-lfs.github.com/spec/v1
+oid sha256:725cf14bbc51a4663f5a84804c3a1dd212d72567fb091a6dc24b65054eb2c2f8
+size 335

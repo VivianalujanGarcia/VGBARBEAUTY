@@ -1,7 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-mq" width="512" height="512">
-  <g fill-rule="evenodd" stroke-width="1pt">
-    <path fill="#fff" d="M0 0h512v512H0z"/>
-    <path fill="#00267f" d="M0 0h170.7v512H0z"/>
-    <path fill="#f31830" d="M341.3 0H512v512H341.3z"/>
-  </g>
-</svg>
+version https://git-lfs.github.com/spec/v1
+oid sha256:19cb6f7cb7354c3fd40e987c93a2d76329d34b2ed3873c3f25fe56802f251ea8
+size 295

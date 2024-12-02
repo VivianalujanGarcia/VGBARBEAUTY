@@ -1,24 +1,3 @@
-/*===== LIST GROUP ITEM =====*/
-.list-group-item {
-  color: $dark;
-  p {
-    font-size: 0.8125rem;
-    color: $text-color;
-  }
-  .media-body {
-    padding-right: 1.5rem;
-  }
-}
-
-.list-underline {
-  display: flex;
-  flex-direction: column;
-  .list-item {
-    border-bottom: 1px solid $border-color;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.75rem;
-    padding-bottom: 1.25rem;
-    color: $dark;
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1ce6c1584013d14cd999c6b36e662e85c16fa2923f34164e68349055936db007
+size 431

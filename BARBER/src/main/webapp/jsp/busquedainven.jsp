@@ -1,19 +1,3 @@
-<%@ include file="../jsp/conexion.jsp" %>
-<%
-   if (request.getParameter("listar").equals("buscaraarticulo")) {
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM productos WHERE id_categoria BETWEEN 1 AND 5;");
-%>
-            <option value="">Seleccione un producto:</option>
-<%
-            while (rs.next()) {
-%>
-            <option value="<% out.print(rs.getString(1)); %>,<% out.print(rs.getString(5)); %>"><% out.print(rs.getString(3)); %></option>
-<%
-            }
-        } catch (Exception e) {
-            out.println("error PSQL: " + e);
-        } 
-    }
-%>
+version https://git-lfs.github.com/spec/v1
+oid sha256:7cf3e62210582e0c92dbfe7fa618a2c0a010183a1efb6bcafade7c8d905317aa
+size 640

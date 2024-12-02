@@ -1,35 +1,3 @@
-<%@ page import="net.sf.jasperreports.engine.*" %> 
-<%@ page import="java.util.*" %> 
-<%@ page import="java.io.*" %> 
-<%@ page import="java.sql.*" %> 
-<%@ page import="net.sf.jasperreports.engine.util.*" %>
-<%@ include file="conexion.jsp" %>
-
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-                        try{
-                        /*INDICAMOS EL LUGAR DONDE SE ENCUENTRA NUESTRO ARCHIVO JASPER*/
-                        File reportFile=new File(application.getRealPath("reportes/facven_1.jasper"));
-                        /**/
-                        Map parametros=new HashMap();
-                        String pk = request.getParameter("pkim");
-                        int detalleventa = Integer.parseInt(pk);
-                        parametros.put("detalleventa",detalleventa); 
-
-                        
-                        byte [] bytes= JasperRunManager.runReportToPdf(reportFile.getPath(), parametros,conn);
-                        response.setContentType("application/pdf");
-                        response.setContentLength(bytes.length);
-
-                        ServletOutputStream output=response.getOutputStream();
-                        response.getOutputStream();
-                        output.write(bytes,0,bytes.length);
-                        output.flush();
-                        output.close();
-                        }
-                        catch(java.io.FileNotFoundException ex)
-                        {
-                            ex.getMessage();
-                        }
-                    %>
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:afd37b0e9662d9d4c40bef7315990b96f1339bea07e4030ecbb05b26f2974533
+size 1560

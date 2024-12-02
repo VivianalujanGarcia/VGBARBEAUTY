@@ -1,17 +1,3 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
-
-(function() {
-  "use strict";
-
-  var mode = CodeMirror.getMode({indentUnit: 2}, "text/x-gss");
-  function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1), "gss"); }
-
-  MT("atComponent",
-     "[def @component] {",
-     "[tag foo] {",
-     "  [property color]: [keyword black];",
-     "}",
-     "}");
-
-})();
+version https://git-lfs.github.com/spec/v1
+oid sha256:baeaf2643fff208c2e1e120a5a1c7e0e526c64b9e3221e5389d2fc68eb74105f
+size 460

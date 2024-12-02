@@ -1,5 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-am" width="640" height="480">
-  <path fill="red" d="M0 0h640v160H0z"/>
-  <path fill="#00f" d="M0 160h640v160H0z"/>
-  <path fill="orange" d="M0 320h640v160H0z"/>
-</svg>
+version https://git-lfs.github.com/spec/v1
+oid sha256:85a199ec21d1af74a256335ead0c1e38592bb603d8da81feda4678945e9e00e6
+size 226

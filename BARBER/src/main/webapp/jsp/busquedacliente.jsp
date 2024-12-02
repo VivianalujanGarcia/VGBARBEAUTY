@@ -1,35 +1,3 @@
-<%@ include file="../jsp/conexion.jsp" %>
-<%
-    if (request.getParameter("listar").equals("buscaralumno")) {
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from clientes;");
-%>
-            <option value="">Seleccione un cliente:</option>
-<%
-            while (rs.next()) {
-%>
-            <option value="<% out.print(rs.getString(1)); %>"  data-nombre=""><% out.print(rs.getString(2)); %> </option>
-            
-<%
-            }
-        } catch (Exception e) {
-            out.println("error PSQL: " + e);
-        } 
-    } else if (request.getParameter("listar").equals("buscaraarticulo")) {
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from productos WHERE id_categoria BETWEEN 1 AND 5;;");
-%>
-            <option value="">Seleccione un producto:</option>
-<%
-            while (rs.next()) {
-%>
-            <option value="<% out.print(rs.getString(1)); %>"><% out.print(rs.getString(3)); %></option>
-<%
-            }
-        } catch (Exception e) {
-            out.println("error PSQL: " + e);
-        } 
-    }
-%>
+version https://git-lfs.github.com/spec/v1
+oid sha256:95ea0cdf01092520d2017c78ccfc7f772017c4d89d71a3ca7f340516d119b907
+size 1158
